@@ -14,8 +14,6 @@
 
 ### Gulp Imagemin
 
-Gulp Imagemin Documentation
-
 Minify PNG, JPEG, GIF and SVG images with [imagemin](https://github.com/imagemin/imagemin)
 
 Repository: [https://github.com/sindresorhus/gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin)
@@ -49,5 +47,37 @@ gulp.task('default', function () {
 			use: [pngquant()]
 		}))
 		.pipe(gulp.dest('dist/images'));
+});
+```
+
+### Gulp Concat
+
+Concatenates files
+
+Repository: [https://github.com/gulp-community/gulp-concat](https://github.com/gulp-community/gulp-concat)
+
+
+##### Installation
+
+npm:
+```
+npm install --save-dev gulp-concat
+```
+
+yarn
+```
+yarn add gulp-concat --dev
+```
+
+##### Usage
+
+```
+import gulp from 'gulp';
+import concat from 'gulp-concat';
+
+gulp.task('scripts', function () {
+  return gulp.src('./lib/*.js')
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest('./dist/'));
 });
 ```
