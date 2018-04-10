@@ -21,20 +21,20 @@ Repository: [https://github.com/sindresorhus/gulp-imagemin](https://github.com/s
 ##### Installation
 
 npm:
-```
+```bash
 npm install --save-dev imagemin-pngquant # imagemin pngquant
 npm install --save-dev gulp-imagemin # gulp imagemin
 ```
 
 yarn
-```
+```bash
 yarn add imagemin-pngquant --dev
 yarn add gulp-imagemin --dev
 ```
 
 ##### Usage
 
-```
+```javascript
 import gulp from 'gulp';
 import imagemin from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
@@ -60,18 +60,18 @@ Repository: [https://github.com/gulp-community/gulp-concat](https://github.com/g
 ##### Installation
 
 npm:
-```
+```bash
 npm install --save-dev gulp-concat
 ```
 
 yarn
-```
+```bash
 yarn add gulp-concat --dev
 ```
 
 ##### Usage
 
-```
+```javascript
 import gulp from 'gulp';
 import concat from 'gulp-concat';
 
@@ -79,5 +79,46 @@ gulp.task('scripts', function () {
   return gulp.src('./lib/*.js')
     .pipe(concat('all.js'))
     .pipe(gulp.dest('./dist/'));
+});
+```
+
+### Gulp order
+
+The gulp plugin gulp-order allows you to reorder a stream of files using the same syntax as of `gulp.src`.
+
+Repository: [https://github.com/sirlantis/gulp-order](https://github.com/sirlantis/gulp-order)
+
+##### Installation
+
+npm:
+```bash
+npm install --save-dev gulp-order
+```
+
+yarn
+```bash
+yarn add gulp-order --dev
+```
+
+##### Usage
+
+```javascript
+import gulp from 'gulp';
+import order from 'gulp-order';
+import coffee from 'gulp-coffee';
+import concat from 'gulp-concat';
+
+gulp.task('scripts', function () {
+  return gulp.src("**/*.coffee")
+    .pipe(coffee())
+    .pipe(gulp.src("**/*.js")) // gulp.src passes through input
+    .pipe(order([
+      "vendor/js1.js",
+      "vendor/**/*.js",
+      "app/coffee1.js",
+      "app/**/*.js"
+    })
+    .pipe(concat("all.js"))
+    .pipe(gulp.dest("dist"));
 });
 ```
