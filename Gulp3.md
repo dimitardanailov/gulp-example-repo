@@ -122,3 +122,36 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest("dist"));
 });
 ```
+
+
+### Gulp Wrap
+
+A gulp plugin to wrap the stream contents with a lodash template.
+
+Repository: [https://github.com/adamayres/gulp-wrap](https://github.com/adamayres/gulp-wrap)
+
+##### Installation
+
+npm:
+```bash
+npm install --save-dev gulp-wrap
+```
+
+yarn
+```bash
+yarn add gulp-wrap --dev
+```
+
+
+```javascript
+import gulp from 'gulp';
+import wrap from 'gulp-wrap';
+
+
+gulp.task('scripts', function () {
+  return gulp.src("./src/*.json")
+    .pipe(wrap('Hello, <%= contents.title %>, have a <%=
+    contents.adjective %> day.'))
+    .pipe(gulp.dest("./dist"));
+});
+```
