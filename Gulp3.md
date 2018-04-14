@@ -142,6 +142,7 @@ yarn
 yarn add gulp-wrap --dev
 ```
 
+##### Usage
 
 ```javascript
 import gulp from 'gulp';
@@ -154,4 +155,38 @@ gulp.task('scripts', function () {
     contents.adjective %> day.'))
     .pipe(gulp.dest("./dist"));
 });
+```
+
+### StreamQueue
+
+StreamQueue pipe the queued streams one by one in order to preserve their content order.
+
+Repository: [https://github.com/nfroidure/StreamQueue](https://github.com/nfroidure/StreamQueue)
+
+##### Installation
+
+npm:
+```bash
+npm install --save-dev streamqueue
+```
+
+yarn
+```bash
+yarn add streamqueue --dev
+```
+
+##### Usage
+
+```javascript
+import streamqueue from 'streamqueue';
+
+let queue = new streamqueue();
+queue.queue(
+  Fs.createReadStream('input.txt'),
+  Fs.createReadStream('input2.txt'),
+  Fs.createReadStream('input3.txt')
+);
+queue.done();
+
+queue.pipe(process.stdout);
 ```
