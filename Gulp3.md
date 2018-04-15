@@ -178,6 +178,7 @@ yarn add streamqueue --dev
 ##### Usage
 
 ```javascript
+import gulp from 'gulp';
 import streamqueue from 'streamqueue';
 
 let queue = new streamqueue();
@@ -189,4 +190,53 @@ queue.queue(
 queue.done();
 
 queue.pipe(process.stdout);
+```
+
+### Run-Sequence
+
+Runs a sequence of gulp tasks in the specified order. This function is designed to solve the situation where you have defined run-order, but choose not to or cannot use dependencies.
+
+Repository: [https://github.com/OverZealous/run-sequence](https://github.com/OverZealous/run-sequence)
+
+##### Installation
+
+npm:
+```bash
+npm install --save-dev run-sequence
+```
+
+yarn
+```bash
+yarn add run-sequence --dev
+```
+
+##### Usage
+
+```javascript
+import gulp from 'gulp';
+import runSequence from 'run-sequence';
+import del from require('del');
+
+// This will run in this order:
+// * build-clean
+// * build-scripts and build-styles in parallel
+// * build-html
+// * Finally call the callback function
+gulp.task('build', function(callback) {
+  runSequence('build-clean',
+    ['build-scripts', 'build-styles'],
+    'build-html',
+    callback);
+});
+
+// configure build-clean, build-scripts, build-styles, build-html as you
+// wish, but make sure they either return a stream or handle the callback
+// Example:
+gulp.task('build-clean', function(callback) {
+  del([BUILD_DIRECTORY], callback);
+});
+
+gulp.task('build-scripts', function() {
+  return gulp.src(SCRIPTS_SRC).pipe(...)...
+});
 ```
