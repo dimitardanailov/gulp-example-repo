@@ -240,3 +240,47 @@ gulp.task('build-scripts', function() {
   return gulp.src(SCRIPTS_SRC).pipe(...)...
 });
 ```
+
+### Del
+
+Delete files and folders using [globs](https://github.com/isaacs/minimatch#usage)
+
+Repository: [https://github.com/sindresorhus/del](https://github.com/sindresorhus/del)
+
+##### Installation
+
+npm:
+```bash
+npm install --save-dev del
+```
+
+yarn
+```bash
+yarn add dev --dev
+```
+
+##### Usage
+
+```javascript
+import gulp from 'gulp';
+import concat from 'gulp-concat';
+import del from 'del';
+
+/**
+ * Task will delete concatenation temp files.
+ */
+gulp.task('concat:clean', function() {
+  var javascript_files = [
+    './assets/dist/javascript/libraries.min.js',
+    './assets/dist/javascript/project.min.js'
+  ];
+
+  var css_files = [
+    './assets/dist/styles/libraries.min.css',
+    './assets/dist/styles/project.min.css'
+  ];
+
+  var garbage_files = javascript_files.concat(css_files);
+
+  del(garbage_files, function (error, paths) { });
+});
