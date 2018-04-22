@@ -256,7 +256,7 @@ npm install --save-dev del
 
 yarn
 ```bash
-yarn add dev --dev
+yarn add del --dev
 ```
 
 ##### Usage
@@ -284,3 +284,36 @@ gulp.task('concat:clean', function() {
 
   del(garbage_files, function (error, paths) { });
 });
+```
+
+### Uglify
+
+Minify JavaScript with UglifyJS2.
+
+Repository: [https://github.com/terinjokes/gulp-uglify](https://github.com/terinjokes/gulp-uglify)
+
+##### Installation
+
+npm:
+```bash
+npm install --save-dev gulp-uglify
+```
+
+yarn
+```bash
+yarn add gulp-uglify --dev
+```
+
+##### Usage
+
+```javascript
+import gulp from 'gulp';
+import uglify from 'gulp-uglify';
+
+gulp.task('compress', function() {
+  return gulp.src('lib/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist'));
+});
+```
+
