@@ -317,3 +317,33 @@ gulp.task('compress', function() {
 });
 ```
 
+### Gulp minify css
+
+gulp plugin to minify CSS, using [clean-css](https://github.com/jakubpawlowicz/clean-css)
+
+Repository: [https://github.com/terinjokes/gulp-uglify](https://github.com/terinjokes/gulp-uglify)
+
+##### Installation
+
+npm:
+```bash
+npm install --save-dev gulp-minify-css
+```
+
+yarn
+```bash
+yarn add gulp-minify-css --dev
+```
+
+##### Usage
+
+```javascript
+import gulp from 'gulp';
+import minifyCss from 'gulp-minify-css';
+
+gulp.task('minify-css', function() {
+  return gulp.src('styles/*.css')
+    .pipe(minifyCss({compatibility: 'ie8'}))
+    .pipe(gulp.dest('dist'));
+});
+```
