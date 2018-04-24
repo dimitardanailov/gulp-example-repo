@@ -347,3 +347,21 @@ gulp.task('minify-css', function() {
     .pipe(gulp.dest('dist'));
 });
 ```
+
+### Gulp notify
+
+notification plugin for gulp
+
+Repository: [https://github.com/mikaelbr/gulp-notify](https://github.com/mikaelbr/gulp-notify)
+
+##### Installation
+
+npm:
+```bash
+npm install --save-dev gulp-notify
+```
+
+yarn
+```bash
+yarn add gulp-notify --dev
+```
