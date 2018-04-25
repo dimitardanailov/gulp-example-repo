@@ -2,9 +2,7 @@
 
 ### Materials
   - Official Documentation
-    * Official Website: [http://gulpjs.com/](gulpjs.com)
-    * Github Repository: [https://github.com/gulpjs/gulp](https://github.com/gulpjs/gulp)
-  - Recipes
+    * Official Website: [http://gulpjs.com/](gulpjs.com) * Github Repository: [https://github.com/gulpjs/gulp](https://github.com/gulpjs/gulp) - Recipes
     * [https://github.com/gulpjs/gulp/tree/master/docs/recipes](https://github.com/gulpjs/gulp/tree/master/docs/recipes)
   - Courses
     * [Web Tooling & Automation - Gulp, Sass, and BabelJS, Oh My!](https://github.com/gulpjs/gulp/tree/master/docs/recipes)
@@ -364,4 +362,45 @@ npm install --save-dev gulp-notify
 yarn
 ```bash
 yarn add gulp-notify --dev
+```
+
+### Gulp Watch
+
+File watcher that uses super-fast [chokidar](https://github.com/paulmillr/chokidar) and emits vinyl objects.
+
+Repository: [https://github.com/floatdrop/gulp-watch](https://github.com/floatdrop/gulp-watch)
+
+
+##### Installation
+
+npm:
+```bash
+npm install --save-dev gulp-watch
+```
+
+yarn
+```bash
+yarn add gulp-watch --dev
+```
+
+##### Usage
+
+```javascript
+import gulp from 'gulp';
+import watch from 'gulp-watch';
+
+gulp.task('stream', function () {
+  return gulp.src('css/**/*.css')
+    .pipe(watch('css/**/*.css'))
+    .pipe(gulp.dest('build'));
+});
+
+
+gulp.task('callback', function (cb) {
+  watch('css/**/*.css', function () {
+    gulp.src('css/**/*.css')
+      .pipe(watch('css/**/*.css'))
+      .on('end', cb);
+    });
+});
 ```
