@@ -404,3 +404,36 @@ gulp.task('callback', function (cb) {
     });
 });
 ```
+
+### Gulp sourcemaps
+
+Repository: [https://github.com/floridoo/gulp-sourcemaps](https://github.com/gulp-sourcemaps/gulp-sourcemaps)
+
+
+##### Installation
+
+npm:
+```bash
+npm install --save-dev gulp-sourcemaps
+```
+
+yarn
+```bash
+yarn add gulp-sourcemaps --dev
+```
+
+##### Usage
+
+```javascript
+import gulp from 'gulp';
+import uglify from 'gulp-uglify';
+import sourcemaps from 'gulp-sourcemaps';
+
+gulp.task('javascript', function() {
+  gulp.src('src/**/*.js')
+    .pipe(sourcemaps.init())
+      .pipe(uglify())
+    .pipe(sourcemaps.write('/', { addComment: false }))
+    .pipe(gulp.dest('dist'));
+});
+```
